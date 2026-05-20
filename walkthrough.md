@@ -5,7 +5,7 @@ This walkthrough details the design, layout adjustments, and deployment verifica
 ## Changes Made
 
 ### 📏 Sizing Optimization
-We optimized spacing inside [calculator.html](file:///c:/Users/Hriday/OneDrive/Desktop/pjct%201%20calci/calculator.html):
+We optimized spacing inside [index.html](file:///c:/Users/Hriday/OneDrive/Desktop/pjct%201%20calci/index.html):
 - **Core Font Scale**: Adjusted display base font size to `46px` for a clean look.
 - **Display Module**: Reduced minimum display box height from `90px` to `72px` and refined expression spacing.
 - **Visual Grid Elements**: Compacted custom height scales across graphing canvas (`110px`), matrix cells (`20px`), converter inputs (`26px`), and stats input areas (`36px`).

@@ -1,6 +1,6 @@
 # Lumina Workstation — Features & Changes Table
 
-> Single-file calculator (`calculator.html`, 1,951 lines) pushed to [code_alpha_task_3](https://github.com/hriday9492865027-dev/code_alpha_task_3)
+> Single-file calculator (`index.html`) pushed to [code_alpha_task_3](https://github.com/hriday9492865027-dev/code_alpha_task_3)
 
 ---
 

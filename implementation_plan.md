@@ -2,7 +2,7 @@
 
 ## Overview
 
-The existing `calculator.html` (1,951 lines, single-file) will be expanded to a **fully-featured workstation** (~6,000–7,000 lines). All 44 features will be integrated into the same single-file architecture for zero-dependency deployment.
+The existing `index.html` (single-file) will be expanded to a **fully-featured workstation** (~6,000–7,000 lines). All 44 features will be integrated into the same single-file architecture for zero-dependency deployment.
 
 ---
 
@@ -21,7 +21,7 @@ The existing `calculator.html` (1,951 lines, single-file) will be expanded to a 
 
 ## Proposed Changes
 
-### `[MODIFY]` [calculator.html](file:///c:/Users/Hriday/OneDrive/Desktop/pjct%201%20calci/calculator.html)
+### `[MODIFY]` [index.html](file:///c:/Users/Hriday/OneDrive/Desktop/pjct%201%20calci/index.html)
 
 The file will be restructured into clearly labeled sections:
 
