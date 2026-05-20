@@ -14,7 +14,7 @@
   :root {
     --duration-cool: 0.45s;
     --easing-cool: cubic-bezier(0.25, 1, 0.3, 1);
-    --base-font-size: 54px;
+    --base-font-size: 46px;
     --accent-color: #ff9f0a;
     --accent-glow: rgba(255, 159, 10, 0.4);
   }
@@ -186,8 +186,8 @@
     position: relative;
     background: var(--calc-bg);
     border: 1px solid var(--calc-border);
-    border-radius: 30px;
-    padding: 24px;
+    border-radius: 24px;
+    padding: 12px;
     width: 390px;
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
@@ -217,7 +217,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
     gap: 8px;
   }
@@ -258,8 +258,8 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.07);
     color: var(--display-text);
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -284,17 +284,17 @@
   }
 
   .header-btn svg {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     fill: currentColor;
   }
 
   /* Display Section */
   .display {
-    padding: 8px 10px;
+    padding: 4px 6px;
     text-align: right;
-    margin-bottom: 8px;
-    min-height: 120px;
+    margin-bottom: 4px;
+    min-height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -331,19 +331,19 @@
 
   .display-expr {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    font-size: 11px;
     color: var(--display-expr);
-    min-height: 18px;
+    min-height: 14px;
     word-break: break-all;
     transition: color 0.8s;
   }
 
   .display-sub {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
+    font-size: 13px;
     color: var(--display-subtext);
-    min-height: 22px;
-    margin-bottom: 4px;
+    min-height: 18px;
+    margin-bottom: 2px;
     word-break: break-all;
     transition: color 0.8s;
   }
@@ -376,7 +376,7 @@
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     padding: 2px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     gap: 2px;
   }
   .base-btn {
@@ -401,7 +401,7 @@
   .expr-bar {
     display: flex;
     gap: 6px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
   .expr-input {
     flex: 1;
@@ -409,7 +409,7 @@
     border: 1px solid var(--calc-border);
     border-radius: 8px;
     color: var(--display-text);
-    padding: 6px 10px;
+    padding: 4px 8px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     outline: none;
@@ -418,7 +418,7 @@
   .divider {
     height: 0.5px;
     background: var(--calc-border);
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     transition: background 0.8s;
   }
 
@@ -427,12 +427,12 @@
     display: flex;
     justify-content: space-between;
     gap: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .mem-btn {
     flex: 1;
-    height: 28px;
+    height: 24px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 8px;
@@ -453,14 +453,14 @@
   /* Workspace Multi-panel layout */
   .workspace {
     display: flex;
-    gap: 16px;
+    gap: 12px;
   }
 
   /* Collapsible Scientific Panel */
   .scientific-panel {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 6px;
     width: 0;
     opacity: 0;
     visibility: hidden;
@@ -471,7 +471,7 @@
   }
 
   .calc.scientific-active .scientific-panel {
-    width: 210px;
+    width: 180px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -479,10 +479,10 @@
 
   /* Standard Keypad Panel */
   .standard-panel {
-    width: 340px;
+    width: 320px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 6px;
     transition: width var(--duration-cool) var(--easing-cool);
   }
 
@@ -494,13 +494,13 @@
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     transition: width var(--duration-cool) var(--easing-cool), 
                 opacity 0.3s ease, 
                 visibility var(--duration-cool);
   }
   .calc.graphing-active .graphing-panel {
-    width: 300px;
+    width: 280px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -514,11 +514,11 @@
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     transition: width var(--duration-cool) var(--easing-cool), opacity 0.3s ease;
   }
   .calc.matrix-active .matrix-panel {
-    width: 300px;
+    width: 280px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -532,11 +532,11 @@
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     transition: width var(--duration-cool) var(--easing-cool), opacity 0.3s ease;
   }
   .calc.unit-active .unit-panel {
-    width: 300px;
+    width: 280px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -550,11 +550,11 @@
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     transition: width var(--duration-cool) var(--easing-cool), opacity 0.3s ease;
   }
   .calc.stats-active .stats-panel {
-    width: 300px;
+    width: 280px;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -567,7 +567,7 @@
     border: 1px solid var(--calc-border);
     background: rgba(0, 0, 0, 0.22);
     overflow: hidden;
-    height: 180px;
+    height: 110px;
   }
 
   .graph-canvas {
@@ -626,7 +626,7 @@
 
   .graph-ctrl-btn {
     flex: 1;
-    height: 28px;
+    height: 22px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--calc-border);
     border-radius: 6px;
@@ -645,7 +645,7 @@
   .matrix-grid-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
   .matrix-dims {
     display: flex;
@@ -653,7 +653,7 @@
   }
   .matrix-dim-btn {
     flex: 1;
-    height: 28px;
+    height: 22px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--calc-border);
     border-radius: 6px;
@@ -668,7 +668,7 @@
   .matrix-grids {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
   }
   .matrix-box {
     flex: 1;
@@ -676,7 +676,7 @@
     flex-direction: column;
     gap: 4px;
     background: rgba(0,0,0,0.15);
-    padding: 8px;
+    padding: 6px;
     border-radius: 10px;
     border: 1px solid var(--calc-border);
   }
@@ -692,7 +692,7 @@
   }
   .matrix-cell {
     width: 100%;
-    height: 24px;
+    height: 20px;
     background: rgba(0,0,0,0.3);
     border: 0.5px solid var(--calc-border);
     color: var(--display-text);
@@ -708,7 +708,7 @@
     gap: 4px;
   }
   .matrix-op-btn {
-    height: 30px;
+    height: 24px;
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--calc-border);
     border-radius: 6px;
@@ -725,7 +725,7 @@
   }
   .unit-select {
     width: 100%;
-    height: 32px;
+    height: 26px;
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--calc-border);
     color: var(--display-text);
@@ -751,7 +751,7 @@
   }
   .unit-input {
     width: 100%;
-    height: 32px;
+    height: 26px;
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--calc-border);
     color: var(--display-text);
@@ -766,7 +766,7 @@
   .stats-box {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
   .stats-title {
     font-size: 12px;
@@ -775,7 +775,7 @@
   }
   .stats-area {
     width: 100%;
-    height: 50px;
+    height: 36px;
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--calc-border);
     border-radius: 8px;
@@ -787,7 +787,7 @@
     resize: none;
   }
   .stats-btn {
-    height: 30px;
+    height: 24px;
     background: var(--accent-color);
     color: #000;
     border: none;
@@ -801,7 +801,7 @@
   }
   .coeff-input {
     flex: 1;
-    height: 28px;
+    height: 22px;
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--calc-border);
     border-radius: 6px;
@@ -814,11 +814,11 @@
 
   /* Keycaps buttons */
   .btn {
-    height: 60px;
+    height: 38px;
     border: none;
-    border-radius: 16px;
+    border-radius: 10px;
     font-family: 'Outfit', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
     cursor: pointer;
     position: relative;
@@ -844,7 +844,7 @@
   .btn-dark {
     background: var(--btn-dark-bg);
     color: var(--btn-dark-color);
-    font-size: 16.5px;
+    font-size: 13.5px;
     font-weight: 500;
   }
   .btn-dark:hover { background: var(--btn-dark-hover); }
@@ -852,7 +852,7 @@
   .btn-orange {
     background: var(--btn-accent-bg);
     color: var(--btn-accent-color);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 300;
   }
   .btn-orange:hover {
@@ -867,7 +867,7 @@
   .btn-eq {
     background: var(--btn-accent-bg);
     color: var(--btn-accent-color);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 300;
   }
   .btn-eq:hover {
