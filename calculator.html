@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumina Workstation</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --duration-cool: 0.45s;
+    --easing-cool: cubic-bezier(0.25, 1, 0.3, 1);
+  }
+
+  /* Midnight Glass Theme */
+  [data-theme="midnight"] {
+    --bg-grad-1: #040409;
+    --bg-grad-2: #0e0e1e;
+    --bg-grad-3: #020204;
+    
+    --calc-bg: rgba(22, 22, 32, 0.65);
+    --calc-border: rgba(255, 255, 255, 0.08);
+    --calc-shadow: rgba(0, 0, 0, 0.6);
+    --accent-color: #ff9f0a;
+    --accent-glow: rgba(255, 159, 10, 0.4);
+    
+    --display-text: #ffffff;
+    --display-subtext: #8e8e93;
+    --display-expr: #636366;
+    
+    --btn-num-bg: rgba(44, 44, 46, 0.45);
+    --btn-num-color: #ffffff;
+    --btn-num-hover: rgba(58, 58, 60, 0.7);
+    
+    --btn-dark-bg: rgba(99, 99, 102, 0.3);
+    --btn-dark-color: #f2f2f7;
+    --btn-dark-hover: rgba(142, 142, 147, 0.4);
+    
+    --btn-accent-bg: #ff9f0a;
+    --btn-accent-color: #ffffff;
+    --btn-accent-hover: #ffb340;
+    
+    --drawer-bg: rgba(15, 15, 22, 0.94);
+    --graph-grid: rgba(255, 255, 255, 0.04);
+    --graph-axis: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Cyberpunk Neon Theme */
+  [data-theme="cyberpunk"] {
+    --bg-grad-1: #040008;
+    --bg-grad-2: #0e001c;
+    --bg-grad-3: #010003;
+    
+    --calc-bg: rgba(12, 4, 22, 0.72);
+    --calc-border: rgba(0, 240, 255, 0.28);
+    --calc-shadow: rgba(255, 0, 127, 0.25);
+    --accent-color: #ff007f;
+    --accent-glow: rgba(255, 0, 127, 0.5);
+    
+    --display-text: #00f0ff;
+    --display-subtext: #ff007f;
+    --display-expr: rgba(0, 240, 255, 0.65);
+    
+    --btn-num-bg: rgba(30, 10, 52, 0.4);
+    --btn-num-color: #00f0ff;
+    --btn-num-hover: rgba(0, 240, 255, 0.15);
+    
+    --btn-dark-bg: rgba(255, 0, 127, 0.12);
+    --btn-dark-color: #ff007f;
+    --btn-dark-hover: rgba(255, 0, 127, 0.25);
+    
+    --btn-accent-bg: #ff007f;
+    --btn-accent-color: #ffffff;
+    --btn-accent-hover: #ff3399;
+    
+    --drawer-bg: rgba(8, 2, 16, 0.96);
+    --graph-grid: rgba(0, 240, 255, 0.05);
+    --graph-axis: rgba(0, 240, 255, 0.2);
+  }
+
+  /* Nordic Aurora Theme */
+  [data-theme="aurora"] {
+    --bg-grad-1: #020b09;
+    --bg-grad-2: #051412;
+    --bg-grad-3: #010303;
+    
+    --calc-bg: rgba(12, 26, 23, 0.68);
+    --calc-border: rgba(0, 230, 118, 0.22);
+    --calc-shadow: rgba(0, 24, 18, 0.5);
+    --accent-color: #00e676;
+    --accent-glow: rgba(0, 230, 118, 0.45);
+    
+    --display-text: #e0f2f1;
+    --display-subtext: #00e676;
+    --display-expr: rgba(224, 242, 241, 0.55);
+    
+    --btn-num-bg: rgba(18, 42, 38, 0.38);
+    --btn-num-color: #ffffff;
+    --btn-num-hover: rgba(0, 230, 118, 0.15);
+    
+    --btn-dark-bg: rgba(38, 70, 66, 0.35);
+    --btn-dark-color: #00e676;
+    --btn-dark-hover: rgba(38, 70, 66, 0.6);
+    
+    --btn-accent-bg: #00b0ff;
+    --btn-accent-color: #ffffff;
+    --btn-accent-hover: #40c4ff;
+    
+    --drawer-bg: rgba(8, 20, 17, 0.96);
+    --graph-grid: rgba(0, 230, 118, 0.04);
+    --graph-axis: rgba(0, 230, 118, 0.18);
+  }
+
+  /* Sakura Blossom Theme */
+  [data-theme="sakura"] {
+    --bg-grad-1: #fff3f5;
+    --bg-grad-2: #ffe2e5;
+    --bg-grad-3: #fff0f2;
+    
+    --calc-bg: rgba(255, 255, 255, 0.72);
+    --calc-border: rgba(255, 183, 197, 0.48);
+    --calc-shadow: rgba(244, 63, 94, 0.08);
+    --accent-color: #f43f5e;
+    --accent-glow: rgba(244, 63, 94, 0.3);
+    
+    --display-text: #4c1d24;
+    --display-subtext: #e11d48;
+    --display-expr: rgba(76, 29, 36, 0.55);
+    
+    --btn-num-bg: rgba(255, 255, 255, 0.7);
+    --btn-num-color: #4c1d24;
+    --btn-num-hover: rgba(255, 183, 197, 0.25);
+    
+    --btn-dark-bg: rgba(254, 226, 226, 0.7);
+    --btn-dark-color: #be123c;
+    --btn-dark-hover: rgba(254, 205, 205, 0.85);
+    
+    --btn-accent-bg: #fda4af;
+    --btn-accent-color: #ffffff;
+    --btn-accent-hover: #f43f5e;
+    
+    --drawer-bg: rgba(255, 243, 245, 0.97);
+    --graph-grid: rgba(244, 63, 94, 0.05);
+    --graph-axis: rgba(244, 63, 94, 0.18);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2) 50%, var(--bg-grad-3));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.8s ease;
+  }
+
+  /* Dynamic Particle Canvas */
+  #bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Card Chassis */
+  .calc {
+    position: relative;
+    background: var(--calc-bg);
+    border: 1px solid var(--calc-border);
+    border-radius: 30px;
+    padding: 24px;
+    width: 390px;
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    box-shadow: 0 45px 90px var(--calc-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: width var(--duration-cool) var(--easing-cool), 
+                box-shadow 0.3s ease, 
+                border-color 0.8s ease, 
+                background 0.8s ease;
+    overflow: hidden;
+  }
+
+  .calc.scientific-active { width: 616px; }
+  .calc.graphing-active { width: 710px; }
+  .calc.scientific-active.graphing-active { width: 936px; }
+
+  /* Header Section */
+  .calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .theme-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .theme-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .theme-dot:hover { transform: scale(1.25); }
+  .theme-dot.active {
+    border-color: var(--display-text);
+    transform: scale(1.15);
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 9px;
+  }
+
+  .header-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: var(--display-text);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    padding: 0;
+  }
+
+  .header-btn:hover {
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.17);
+    transform: translateY(-1px);
+  }
+
+  .header-btn:active { transform: scale(0.95); }
+  .header-btn.active {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  .header-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+
+  /* Display Engine */
+  .display {
+    padding: 8px 10px;
+    text-align: right;
+    margin-bottom: 8px;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .display-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 20px;
+    margin-bottom: 2px;
+  }
+
+  .display-left-indicators {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .display-mode-indicator, .display-mem-indicator {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    padding: 1px 5px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.3s, transform 0.3s, color 0.8s;
+  }
+
+  .display-mode-indicator.show, .display-mem-indicator.show {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+
+  .display-expr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--display-expr);
+    min-height: 18px;
+    word-break: break-all;
+    transition: color 0.8s;
+  }
+
+  .display-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--display-subtext);
+    min-height: 22px;
+    margin-bottom: 4px;
+    word-break: break-all;
+    transition: color 0.8s;
+  }
+
+  .display-main {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 54px;
+    font-weight: 300;
+    color: var(--display-text);
+    line-height: 1;
+    word-break: break-all;
+    transition: font-size 0.15s, color 0.8s;
+  }
+
+  .display-main.md { font-size: 34px; }
+  .display-main.sm { font-size: 24px; }
+  .display-main.xs { font-size: 19px; }
+  .display-main.error { color: #ff453a; font-size: 22px; }
+
+  .divider {
+    height: 0.5px;
+    background: var(--calc-border);
+    margin-bottom: 12px;
+    transition: background 0.8s;
+  }
+
+  /* Memory Dashboard Row */
+  .mem-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .mem-btn {
+    flex: 1;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: var(--display-subtext);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .mem-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--calc-border);
+    color: var(--display-text);
+  }
+
+  .mem-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Dynamic Multi-Panel Workspace */
+  .workspace {
+    display: flex;
+    gap: 16px;
+  }
+
+  /* Scientific Panel */
+  .scientific-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: width var(--duration-cool) var(--easing-cool), 
+                opacity 0.3s ease, 
+                visibility var(--duration-cool);
+  }
+
+  .calc.scientific-active .scientific-panel {
+    width: 210px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Standard Keypad Panel */
+  .standard-panel {
+    width: 340px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    transition: width var(--duration-cool) var(--easing-cool);
+  }
+
+  /* Interactive Graphing Panel */
+  .graphing-panel {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: width var(--duration-cool) var(--easing-cool), 
+                opacity 0.3s ease, 
+                visibility var(--duration-cool);
+  }
+
+  .calc.graphing-active .graphing-panel {
+    width: 300px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .graph-canvas-container {
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid var(--calc-border);
+    background: rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    height: 236px;
+  }
+
+  .graph-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+
+  .graph-canvas:active { cursor: grabbing; }
+
+  .graph-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .graph-formula-bar {
+    display: flex;
+    gap: 6px;
+  }
+
+  .graph-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--calc-border);
+    border-radius: 10px;
+    color: var(--display-text);
+    padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    height: 38px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .graph-input:focus {
+    border-color: var(--accent-color);
+  }
+
+  .graph-btn {
+    height: 38px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent-color);
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .graph-btn:hover {
+    background: var(--btn-accent-hover);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  .graph-btn:active { transform: scale(0.96); }
+
+  .graph-controls {
+    display: flex;
+    gap: 6px;
+  }
+
+  .graph-ctrl-btn {
+    flex: 1;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--calc-border);
+    border-radius: 8px;
+    color: var(--display-subtext);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .graph-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--display-text);
+  }
+
+  /* Keycaps styling */
+  .btn {
+    height: 60px;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s, color 0.8s, transform 0.08s, box-shadow 0.2s;
+  }
+
+  .btn:active, .btn.btn-kbd-active {
+    transform: scale(0.93) translateY(1px);
+  }
+
+  .btn-num {
+    background: var(--btn-num-bg);
+    color: var(--btn-num-color);
+  }
+
+  .btn-num:hover { background: var(--btn-num-hover); }
+
+  .btn-dark {
+    background: var(--btn-dark-bg);
+    color: var(--btn-dark-color);
+    font-size: 16.5px;
+    font-weight: 500;
+  }
+
+  .btn-dark:hover { background: var(--btn-dark-hover); }
+
+  .btn-orange {
+    background: var(--btn-accent-bg);
+    color: var(--btn-accent-color);
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  .btn-orange:hover {
+    background: var(--btn-accent-hover);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .btn-orange.active {
+    background: var(--display-text);
+    color: var(--btn-accent-bg);
+  }
+
+  .btn-eq {
+    background: var(--btn-accent-bg);
+    color: var(--btn-accent-color);
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  .btn-eq:hover {
+    background: var(--btn-accent-hover);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  /* Micro-animations */
+  .btn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-effect 0.5s ease-out;
+    background: rgba(255, 255, 255, 0.22);
+    pointer-events: none;
+  }
+
+  @keyframes ripple-effect {
+    to {
+      transform: scale(3.5);
+      opacity: 0;
+    }
+  }
+
+  .spark {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    animation: spark-fly 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    box-shadow: 0 0 8px var(--accent-color);
+  }
+
+  @keyframes spark-fly {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--vx), var(--vy)) scale(0);
+      opacity: 0;
+    }
+  }
+
+  /* slide-up History Sheet */
+  .history-drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--drawer-bg);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    transform: translateY(100%);
+    transition: transform var(--duration-cool) var(--easing-cool), background 0.8s;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 30px;
+  }
+
+  .calc.history-active .history-drawer { transform: translateY(0); }
+
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .history-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--display-text);
+  }
+
+  .history-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .history-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+  }
+
+  .history-list::-webkit-scrollbar { width: 4px; }
+  .history-list::-webkit-scrollbar-thumb {
+    background: var(--calc-border);
+    border-radius: 4px;
+  }
+
+  .history-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .history-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--calc-border);
+  }
+
+  .history-item-expr {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--display-expr);
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .history-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .history-copy-btn {
+    background: transparent;
+    border: none;
+    color: var(--display-subtext);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .history-copy-btn:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .history-copy-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  .history-item-res {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--display-text);
+    text-align: right;
+    word-break: break-all;
+  }
+
+  .history-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--display-subtext);
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .history-empty svg {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+    opacity: 0.35;
+  }
+</style>
+</head>
+<body>
+
+<!-- Dynamic Particle Canvas background -->
+<canvas id="bg-particles"></canvas>
+
+<!-- Calculator Workstation -->
+<div class="calc" id="calculator" data-theme="midnight">
+  
+  <!-- Slide-up History Drawer -->
+  <div class="history-drawer" id="history-drawer">
+    <div class="history-header">
+      <div class="history-title">History</div>
+      <div class="history-actions">
+        <button class="header-btn" onclick="clearHistory(event)" title="Clear History">
+          <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+        </button>
+        <button class="header-btn" onclick="toggleHistory(event)" title="Close History">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="history-list" id="history-list">
+      <!-- Injected Dynamically -->
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <div class="calc-header">
+    <div class="theme-dots">
+      <button class="theme-dot theme-midnight active" id="dot-midnight" onclick="changeTheme('midnight', event)" title="Midnight Glass"></button>
+      <button class="theme-dot theme-cyberpunk" id="dot-cyberpunk" onclick="changeTheme('cyberpunk', event)" title="Cyberpunk Neon"></button>
+      <button class="theme-dot theme-aurora" id="dot-aurora" onclick="changeTheme('aurora', event)" title="Nordic Aurora"></button>
+      <button class="theme-dot theme-sakura" id="dot-sakura" onclick="changeTheme('sakura', event)" title="Sakura Blossom"></button>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" id="audio-toggle" onclick="toggleAudio(event)" title="Mute Haptics">
+        <svg id="audio-icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+      </button>
+      <button class="header-btn" id="scientific-toggle" onclick="toggleScientific(event)" title="Scientific Mode">
+        <svg viewBox="0 0 24 24"><path d="M9.75 3c-.41 0-.75.34-.75.75s.34.75.75.75h1.22c.46 0 .82.32.9.77l1.13 6.23H10.5c-.41 0-.75.34-.75.75s.34.75.75.75h2.8l-1.04 5.75c-.21 1.15-1.2 2-2.37 2H8.75c-.41 0-.75.34-.75.75s.34.75.75.75h1.13c1.9 0 3.5-1.36 3.84-3.23l1.04-5.77h2.72c.41 0 .75-.34.75-.75s-.34-.75-.75-.75h-2.45l-1.13-6.23c-.34-1.87-1.94-3.23-3.84-3.23H9.75z"/></svg>
+      </button>
+      <button class="header-btn" id="graphing-toggle" onclick="toggleGraphing(event)" title="Graphing Mode">
+        <svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L3 15.66l.5 2.83z"/></svg>
+      </button>
+      <button class="header-btn" id="history-toggle-btn" onclick="toggleHistory(event)" title="Calculation History">
+        <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display Interface -->
+  <div class="display">
+    <div class="display-top-row">
+      <div class="display-left-indicators">
+        <span class="display-mode-indicator" id="mode-indicator">DEG</span>
+        <span class="display-mem-indicator" id="mem-indicator">M</span>
+      </div>
+      <div class="display-expr" id="history">&nbsp;</div>
+    </div>
+    <div class="display-sub" id="subexpr">&nbsp;</div>
+    <div class="display-main" id="main">0</div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Memory Dashboard Register Panel -->
+  <div class="mem-row">
+    <button class="mem-btn" onclick="runMem('MC', event)">MC</button>
+    <button class="mem-btn" onclick="runMem('MR', event)">MR</button>
+    <button class="mem-btn" onclick="runMem('M+', event)">M+</button>
+    <button class="mem-btn" onclick="runMem('M-', event)">M-</button>
+    <button class="mem-btn" onclick="runMem('MS', event)">MS</button>
+  </div>
+
+  <!-- Interactive Grid Workspace -->
+  <div class="workspace">
+    
+    <!-- Collapsible Scientific Panel -->
+    <div class="scientific-panel" id="scientific-panel">
+      <button class="btn btn-dark" data-key="sin" onclick="runUnary('sin', event)">sin</button>
+      <button class="btn btn-dark" data-key="cos" onclick="runUnary('cos', event)">cos</button>
+      <button class="btn btn-dark" data-key="tan" onclick="runUnary('tan', event)">tan</button>
+      
+      <button class="btn btn-dark" data-key="ln" onclick="runUnary('ln', event)">ln</button>
+      <button class="btn btn-dark" data-key="log" onclick="runUnary('log', event)">log</button>
+      <button class="btn btn-dark" data-key="^" id="op-pow" onclick="setOp('^', event)">xʸ</button>
+      
+      <button class="btn btn-dark" data-key="sqrt" onclick="runUnary('sqrt', event)">√</button>
+      <button class="btn btn-dark" data-key="sq" onclick="runUnary('sq', event)">x²</button>
+      <button class="btn btn-dark" data-key="recip" onclick="runUnary('recip', event)">1/x</button>
+      
+      <button class="btn btn-dark" data-key="pi" onclick="runConst('pi', event)">π</button>
+      <button class="btn btn-dark" data-key="e" onclick="runConst('e', event)">e</button>
+      <button class="btn btn-dark" id="deg-rad-btn" onclick="toggleDegRad(event)">DEG</button>
+    </div>
+
+    <!-- Standard Calculator Panel -->
+    <div class="standard-panel" id="standard-panel">
+      <button class="btn btn-dark" id="ac-btn" data-key="ac" onclick="clearAll(event)">AC</button>
+      <button class="btn btn-dark" data-key="sign" onclick="toggleSign(event)">+/−</button>
+      <button class="btn btn-dark" data-key="%" onclick="percent(event)">%</button>
+      <button class="btn btn-orange" id="op-div" data-key="/" onclick="setOp('÷', event)">÷</button>
+
+      <button class="btn btn-num" data-key="7" onclick="inp('7', event)">7</button>
+      <button class="btn btn-num" data-key="8" onclick="inp('8', event)">8</button>
+      <button class="btn btn-num" data-key="9" onclick="inp('9', event)">9</button>
+      <button class="btn btn-orange" id="op-mul" data-key="*" onclick="setOp('×', event)">×</button>
+
+      <button class="btn btn-num" data-key="4" onclick="inp('4', event)">4</button>
+      <button class="btn btn-num" data-key="5" onclick="inp('5', event)">5</button>
+      <button class="btn btn-num" data-key="6" onclick="inp('6', event)">6</button>
+      <button class="btn btn-orange" id="op-sub" data-key="-" onclick="setOp('−', event)">−</button>
+
+      <button class="btn btn-num" data-key="1" onclick="inp('1', event)">1</button>
+      <button class="btn btn-num" data-key="2" onclick="inp('2', event)">2</button>
+      <button class="btn btn-num" data-key="3" onclick="inp('3', event)">3</button>
+      <button class="btn btn-orange" id="op-add" data-key="+" onclick="setOp('+', event)">+</button>
+
+      <button class="btn btn-num" data-key="0" onclick="inp('0', event)">0</button>
+      <button class="btn btn-num" data-key="." onclick="dot(event)">.</button>
+      <button class="btn btn-dark" data-key="backspace" onclick="backspace(event)">⌫</button>
+      <button class="btn btn-eq" data-key="=" onclick="calculate(event)">=</button>
+    </div>
+
+    <!-- Slide-out Graphing Panel -->
+    <div class="graphing-panel" id="graphing-panel">
+      <div class="graph-canvas-container">
+        <canvas class="graph-canvas" id="graph-canvas"></canvas>
+      </div>
+      <div class="graph-inputs">
+        <div class="graph-formula-bar">
+          <input class="graph-input" id="graph-formula" type="text" value="sin(x)" placeholder="Formula (e.g. x^2)" />
+          <button class="graph-btn" onclick="plotGraphFromInput(event)" title="Plot Formula">Plot</button>
+        </div>
+        <div class="graph-controls">
+          <button class="graph-ctrl-btn" onclick="zoomGraph(1.3, event)">Zoom In</button>
+          <button class="graph-ctrl-btn" onclick="zoomGraph(0.7, event)">Zoom Out</button>
+          <button class="graph-ctrl-btn" onclick="resetGraphView(event)">Reset</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let cur = '0', prev = '', op = null, fresh = false, didCalc = false;
+  let degMode = true;
+  let hapticAudio = null;
+  let soundEnabled = true;
+  let historyList = [];
+  let memoryVal = 0;
+
+  // Background Particles State
+  const bgCanvas = document.getElementById('bg-particles');
+  const bgCtx = bgCanvas.getContext('2d');
+  let bgParticles = [];
+  let animId = null;
+  let lastTime = 0;
+
+  // Graphing Panel State
+  const graphCanvas = document.getElementById('graph-canvas');
+  const graphCtx = graphCanvas.getContext('2d');
+  let formulaStr = "sin(x)";
+  let scaleX = 35; // Pixels per unit
+  let scaleY = 35;
+  let originX = 150; // Canvas coordinates origin (center)
+  let originY = 118;
+  let isPanning = false;
+  let dragStartX = 0, dragStartY = 0;
+
+  const mainEl = document.getElementById('main');
+  const subEl = document.getElementById('subexpr');
+  const histEl = document.getElementById('history');
+  const acBtn = document.getElementById('ac-btn');
+  const calcContainer = document.getElementById('calculator');
+  const degRadBtn = document.getElementById('deg-rad-btn');
+  const modeIndicator = document.getElementById('mode-indicator');
+  const memIndicator = document.getElementById('mem-indicator');
+  const audioIcon = document.getElementById('audio-icon');
+  const audioToggleBtn = document.getElementById('audio-toggle');
+  const historyListEl = document.getElementById('history-list');
+  const graphInput = document.getElementById('graph-formula');
+
+  const opIds = { '÷':'op-div', '×':'op-mul', '−':'op-sub', '+': 'op-add', '^':'op-pow' };
+
+  // Volume Icons
+  const audioOnSvg = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>`;
+  const audioMuteSvg = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>`;
+
+  // Init Engine
+  function init() {
+    // Canvas sizing setup
+    resizeBgCanvas();
+    window.addEventListener('resize', () => {
+      resizeBgCanvas();
+      initParticles();
+    });
+
+    // Graph setup
+    setupGraphEvents();
+    resizeGraphCanvas();
+
+    // Load Local Settings
+    const savedTheme = localStorage.getItem('calci_theme') || 'midnight';
+    setThemeColors(savedTheme);
+    initParticles(); // start particle engine
+
+    const savedAudio = localStorage.getItem('calci_audio');
+    if (savedAudio !== null) {
+      soundEnabled = savedAudio === 'true';
+    }
+    updateAudioIcon();
+
+    const savedHistory = localStorage.getItem('calci_history');
+    if (savedHistory) {
+      historyList = JSON.parse(savedHistory);
+    }
+    renderHistoryDrawer();
+
+    const savedSci = localStorage.getItem('calci_scientific');
+    if (savedSci === 'true') {
+      calcContainer.classList.add('scientific-active');
+      document.getElementById('scientific-toggle').classList.add('active');
+      modeIndicator.classList.add('show');
+    }
+
+    const savedGraph = localStorage.getItem('calci_graphing');
+    if (savedGraph === 'true') {
+      calcContainer.classList.add('graphing-active');
+      document.getElementById('graphing-toggle').classList.add('active');
+      setTimeout(() => {
+        resizeGraphCanvas();
+        drawGraph();
+      }, 300);
+    }
+
+    const savedMemory = localStorage.getItem('calci_memory');
+    if (savedMemory) {
+      memoryVal = parseFloat(savedMemory) || 0;
+      if (memoryVal !== 0) {
+        memIndicator.classList.add('show');
+      }
+    }
+
+    render();
+    animate(0);
+  }
+
+  // Synthesis Click Haptics Engine (Theme-Specific!)
+  function playClick() {
+    if (!soundEnabled) return;
+    try {
+      if (!hapticAudio) {
+        hapticAudio = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (hapticAudio.state === 'suspended') {
+        hapticAudio.resume();
+      }
+      const theme = calcContainer.getAttribute('data-theme') || 'midnight';
+      const osc = hapticAudio.createOscillator();
+      const gain = hapticAudio.createGain();
+      
+      osc.connect(gain);
+      gain.connect(hapticAudio.destination);
+      
+      const now = hapticAudio.currentTime;
+      
+      if (theme === 'midnight') {
+        // Deep physical mechanical keypress
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1100, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.04);
+        gain.gain.setValueAtTime(0.06, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } else if (theme === 'cyberpunk') {
+        // Chiptune 8-bit laser sweep
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(1700, now + 0.035);
+        gain.gain.setValueAtTime(0.03, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+        osc.start(now);
+        osc.stop(now + 0.045);
+      } else if (theme === 'aurora') {
+        // Soothing liquid water droplet sound
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(2000, now + 0.07);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (theme === 'sakura') {
+        // Hollow organic bamboo block hit
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(900, now);
+        osc.frequency.exponentialRampToValueAtTime(280, now + 0.05);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      }
+    } catch(err) {
+      console.log('Web Audio Context error: ', err);
+    }
+  }
+
+  // Micro-animation: Button Click Waves
+  function buttonRipple(e) {
+    if (!e || !e.clientX) return;
+    const btn = e.currentTarget;
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = `${size}px`;
+    
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  }
+
+  // Micro-animation: Success Spark Particle Emitter
+  function emitSuccessSparks() {
+    const rect = mainEl.getBoundingClientRect();
+    const count = 16;
+    for (let i = 0; i < count; i++) {
+      const spark = document.createElement('div');
+      spark.classList.add('spark');
+      
+      const x = rect.right - 20 + (Math.random() - 0.5) * 40;
+      const y = rect.bottom - 10 + (Math.random() - 0.5) * 20;
+      
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = 2.5 + Math.random() * 5.5;
+      const vx = Math.cos(angle) * velocity;
+      const vy = Math.sin(angle) * velocity;
+      
+      spark.style.setProperty('--vx', `${vx}px`);
+      spark.style.setProperty('--vy', `${vy}px`);
+      spark.style.background = 'var(--accent-color)';
+      
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 800);
+    }
+  }
+
+  // Background Particle System Engine
+  function resizeBgCanvas() {
+    bgCanvas.width = window.innerWidth;
+    bgCanvas.height = window.innerHeight;
+  }
+
+  function initParticles() {
+    bgParticles = [];
+    const theme = calcContainer.getAttribute('data-theme') || 'midnight';
+    const w = bgCanvas.width;
+    const h = bgCanvas.height;
+
+    if (theme === 'midnight') {
+      // Shimmering drifting stars
+      for (let i = 0; i < 70; i++) {
+        bgParticles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          size: 0.6 + Math.random() * 1.8,
+          speed: 0.05 + Math.random() * 0.15,
+          alpha: 0.1 + Math.random() * 0.8,
+          pulse: 0.02 + Math.random() * 0.04
+        });
+      }
+    } else if (theme === 'cyberpunk') {
+      // Sparking binary streams
+      for (let i = 0; i < 35; i++) {
+        bgParticles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          size: 11 + Math.random() * 4,
+          speed: 1.2 + Math.random() * 2.5,
+          char: Math.random() > 0.5 ? '1' : '0',
+          alpha: 0.15 + Math.random() * 0.5,
+          trail: []
+        });
+      }
+    } else if (theme === 'sakura') {
+      // Drifting Cherry Blossom Petals
+      for (let i = 0; i < 25; i++) {
+        bgParticles.push({
+          x: Math.random() * w,
+          y: Math.random() * -h, // start higher up
+          r: 5 + Math.random() * 5,
+          speedY: 0.7 + Math.random() * 1.4,
+          speedX: -0.5 + Math.random() * 1.0,
+          angle: Math.random() * Math.PI * 2,
+          rotSpeed: -0.02 + Math.random() * 0.04,
+          swaySpeed: 0.01 + Math.random() * 0.02,
+          swayWidth: 20 + Math.random() * 30
+        });
+      }
+    }
+  }
+
+  function animate(timestamp) {
+    const elapsed = timestamp - lastTime;
+    lastTime = timestamp;
+
+    const theme = calcContainer.getAttribute('data-theme') || 'midnight';
+    const w = bgCanvas.width;
+    const h = bgCanvas.height;
+
+    bgCtx.clearRect(0, 0, w, h);
+
+    if (theme === 'midnight') {
+      // Draw stellar stars
+      bgCtx.fillStyle = '#ffffff';
+      bgParticles.forEach(p => {
+        // Pulse alpha
+        p.alpha += p.pulse;
+        if (p.alpha > 0.95 || p.alpha < 0.1) p.pulse = -p.pulse;
+        
+        bgCtx.globalAlpha = p.alpha;
+        bgCtx.beginPath();
+        bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        bgCtx.fill();
+
+        // Slow upward drift
+        p.y -= p.speed;
+        if (p.y < -10) {
+          p.y = h + 10;
+          p.x = Math.random() * w;
+        }
+      });
+      bgCtx.globalAlpha = 1.0;
+    } else if (theme === 'cyberpunk') {
+      // Falling neon matrix digits
+      bgCtx.font = '700 13px "JetBrains Mono"';
+      bgParticles.forEach(p => {
+        bgCtx.fillStyle = 'rgba(0, 240, 255, ' + p.alpha + ')';
+        bgCtx.fillText(p.char, p.x, p.y);
+
+        // Slow vertical drop
+        p.y += p.speed;
+        if (p.y > h + 20) {
+          p.y = -20;
+          p.x = Math.random() * w;
+        }
+
+        // Random character toggling
+        if (Math.random() < 0.05) {
+          p.char = p.char === '1' ? '0' : '1';
+        }
+      });
+    } else if (theme === 'aurora') {
+      // Elegant shimmering Northern lights (Horizontal ribbons)
+      bgCtx.clearRect(0, 0, w, h);
+      const time = timestamp * 0.0006;
+      for (let i = 0; i < 3; i++) {
+        bgCtx.beginPath();
+        bgCtx.strokeStyle = i === 0 ? 'rgba(0, 230, 118, 0.09)' : (i === 1 ? 'rgba(0, 176, 255, 0.07)' : 'rgba(76, 175, 80, 0.06)');
+        bgCtx.lineWidth = 140 + Math.sin(time + i) * 40;
+        
+        // Add neon glowing shadow effect
+        bgCtx.shadowBlur = 90;
+        bgCtx.shadowColor = i === 0 ? '#00e676' : '#00b0ff';
+        
+        const yMid = h * (0.35 + i * 0.22);
+        bgCtx.moveTo(0, yMid + Math.sin(time) * 60);
+        for (let x = 0; x <= w; x += 40) {
+          const y = yMid + Math.sin(x * 0.0015 + time * 1.2 + i * 2) * 80;
+          bgCtx.lineTo(x, y);
+        }
+        bgCtx.stroke();
+        bgCtx.shadowBlur = 0; // reset
+      }
+    } else if (theme === 'sakura') {
+      // Falling swaying sakura petals
+      bgCtx.fillStyle = 'rgba(255, 183, 197, 0.65)';
+      bgParticles.forEach(p => {
+        bgCtx.save();
+        bgCtx.translate(p.x, p.y);
+        bgCtx.rotate(p.angle);
+        bgCtx.beginPath();
+        
+        // Drawing beautiful cherry blossom oval curves
+        bgCtx.ellipse(0, 0, p.r * 1.5, p.r * 0.8, 0, 0, Math.PI * 2);
+        bgCtx.fill();
+        bgCtx.restore();
+
+        // Increment rotation and physics
+        p.y += p.speedY;
+        p.angle += p.rotSpeed;
+        p.x += p.speedX + Math.sin(p.y * p.swaySpeed) * 0.35;
+
+        // Reset once below screen bounds
+        if (p.y > h + 20 || p.x < -20 || p.x > w + 20) {
+          p.y = -30;
+          p.x = Math.random() * w;
+        }
+      });
+    }
+
+    animId = requestAnimationFrame(animate);
+  }
+
+  // Interactive Graphing System Setup
+  function resizeGraphCanvas() {
+    const rect = graphCanvas.getBoundingClientRect();
+    graphCanvas.width = rect.width * window.devicePixelRatio;
+    graphCanvas.height = rect.height * window.devicePixelRatio;
+    graphCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+
+  function setupGraphEvents() {
+    graphCanvas.addEventListener('mousedown', e => {
+      isPanning = true;
+      const rect = graphCanvas.getBoundingClientRect();
+      dragStartX = e.clientX - rect.left - originX;
+      dragStartY = e.clientY - rect.top - originY;
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!isPanning) return;
+      const rect = graphCanvas.getBoundingClientRect();
+      originX = e.clientX - rect.left - dragStartX;
+      originY = e.clientY - rect.top - dragStartY;
+      drawGraph();
+    });
+
+    window.addEventListener('mouseup', () => {
+      isPanning = false;
+    });
+
+    graphCanvas.addEventListener('wheel', e => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+      
+      const rect = graphCanvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      const mathX = (mouseX - originX) / scaleX;
+      const mathY = (originY - mouseY) / scaleY;
+      
+      scaleX *= zoomFactor;
+      scaleY *= zoomFactor;
+      
+      // Enforce zoom boundaries
+      scaleX = Math.max(8, Math.min(220, scaleX));
+      scaleY = Math.max(8, Math.min(220, scaleY));
+      
+      originX = mouseX - mathX * scaleX;
+      originY = mouseY + mathY * scaleY;
+      
+      drawGraph();
+    });
+  }
+
+  // Real-time formula evaluator
+  function evaluateFormula(formula, xVal) {
+    let clean = formula.toLowerCase()
+      .replace(/sin/g, 'Math.sin')
+      .replace(/cos/g, 'Math.cos')
+      .replace(/tan/g, 'Math.tan')
+      .replace(/ln/g, 'Math.log')
+      .replace(/log/g, 'Math.log10')
+      .replace(/sqrt/g, 'Math.sqrt')
+      .replace(/pi/g, 'Math.PI')
+      .replace(/e/g, 'Math.E')
+      .replace(/\^/g, '**');
+      
+    try {
+      const func = new Function('x', `return ${clean};`);
+      const val = func(xVal);
+      return isNaN(val) ? null : val;
+    } catch(err) {
+      return null;
+    }
+  }
+
+  // Draw coordinate axis, grids, and plotted formula line
+  function drawGraph() {
+    const w = graphCanvas.width / window.devicePixelRatio;
+    const h = graphCanvas.height / window.devicePixelRatio;
+
+    // Clear Canvas
+    graphCtx.clearRect(0, 0, w, h);
+
+    // Draw grid lines
+    graphCtx.strokeStyle = getComputedStyle(calcContainer).getPropertyValue('--graph-grid').trim() || 'rgba(255,255,255,0.04)';
+    graphCtx.lineWidth = 0.5;
+    
+    // Grid intervals matching the scaling metric
+    let spacing = 1;
+    if (scaleX < 20) spacing = 5;
+    if (scaleX > 90) spacing = 0.5;
+
+    // Vertical grid lines
+    let startGridX = Math.floor((-originX) / (scaleX * spacing)) * spacing;
+    let endGridX = Math.ceil((w - originX) / (scaleX * spacing)) * spacing;
+    
+    graphCtx.beginPath();
+    for (let gu = startGridX; gu <= endGridX; gu += spacing) {
+      const px = originX + gu * scaleX;
+      graphCtx.moveTo(px, 0);
+      graphCtx.lineTo(px, h);
+    }
+    
+    // Horizontal grid lines
+    let startGridY = Math.floor((originY - h) / (scaleY * spacing)) * spacing;
+    let endGridY = Math.ceil(originY / (scaleY * spacing)) * spacing;
+    for (let gu = startGridY; gu <= endGridY; gu += spacing) {
+      const py = originY - gu * scaleY;
+      graphCtx.moveTo(0, py);
+      graphCtx.lineTo(w, py);
+    }
+    graphCtx.stroke();
+
+    // Draw main X & Y coordinates axes
+    graphCtx.strokeStyle = getComputedStyle(calcContainer).getPropertyValue('--graph-axis').trim() || 'rgba(255,255,255,0.18)';
+    graphCtx.lineWidth = 1.2;
+    graphCtx.beginPath();
+    // X Axis
+    graphCtx.moveTo(0, originY);
+    graphCtx.lineTo(w, originY);
+    // Y Axis
+    graphCtx.moveTo(originX, 0);
+    graphCtx.lineTo(originX, h);
+    graphCtx.stroke();
+
+    // Add Tick labels along axes
+    graphCtx.fillStyle = getComputedStyle(calcContainer).getPropertyValue('--display-subtext').trim() || '#8e8e93';
+    graphCtx.font = '300 9px "JetBrains Mono"';
+    graphCtx.textAlign = 'center';
+    graphCtx.textBaseline = 'top';
+
+    // X Axis labels
+    for (let gu = startGridX; gu <= endGridX; gu += spacing) {
+      if (gu === 0) continue;
+      const px = originX + gu * scaleX;
+      if (px > 0 && px < w) {
+        graphCtx.fillText(gu.toString(), px, Math.max(2, Math.min(h - 12, originY + 4)));
+      }
+    }
+
+    // Y Axis labels
+    graphCtx.textAlign = 'right';
+    graphCtx.textBaseline = 'middle';
+    for (let gu = startGridY; gu <= endGridY; gu += spacing) {
+      if (gu === 0) continue;
+      const py = originY - gu * scaleY;
+      if (py > 0 && py < h) {
+        graphCtx.fillText(gu.toString(), Math.max(2, Math.min(w - 6, originX - 6)), py);
+      }
+    }
+
+    // Plot mathematical formula line plot
+    if (!formulaStr) return;
+    graphCtx.strokeStyle = getComputedStyle(calcContainer).getPropertyValue('--accent-color').trim() || '#ff9f0a';
+    graphCtx.lineWidth = 2.5;
+    graphCtx.shadowBlur = 8;
+    graphCtx.shadowColor = getComputedStyle(calcContainer).getPropertyValue('--accent-glow').trim() || 'rgba(255,159,10,0.3)';
+
+    graphCtx.beginPath();
+    let started = false;
+    for (let px = 0; px <= w; px++) {
+      const mathX = (px - originX) / scaleX;
+      const mathY = evaluateFormula(formulaStr, mathX);
+      if (mathY !== null && !isNaN(mathY) && isFinite(mathY)) {
+        const py = originY - mathY * scaleY;
+        if (py >= -20 && py <= h + 20) {
+          if (!started) {
+            graphCtx.moveTo(px, py);
+            started = true;
+          } else {
+            graphCtx.lineTo(px, py);
+          }
+        } else {
+          started = false;
+        }
+      } else {
+        started = false;
+      }
+    }
+    graphCtx.stroke();
+    
+    // Clear shadow state for other components
+    graphCtx.shadowBlur = 0;
+  }
+
+  function plotGraphFromInput(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    const text = graphInput.value.trim();
+    if (text) {
+      formulaStr = text;
+      drawGraph();
+    }
+  }
+
+  function zoomGraph(factor, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    scaleX *= factor;
+    scaleY *= factor;
+    scaleX = Math.max(8, Math.min(220, scaleX));
+    scaleY = Math.max(8, Math.min(220, scaleY));
+    drawGraph();
+  }
+
+  function resetGraphView(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    scaleX = 35;
+    scaleY = 35;
+    originX = graphCanvas.width / (2 * window.devicePixelRatio);
+    originY = graphCanvas.height / (2 * window.devicePixelRatio);
+    drawGraph();
+  }
+
+  // Display Render Engine Updates
+  function render() {
+    const len = cur.length;
+    mainEl.className = 'display-main';
+    if (cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') {
+      mainEl.classList.add('error');
+    } else if (len > 14) mainEl.classList.add('xs');
+    else if (len > 10) mainEl.classList.add('sm');
+    else if (len > 7) mainEl.classList.add('md');
+    mainEl.textContent = cur;
+    acBtn.textContent = (cur === '0' && !prev && !op) ? 'AC' : 'C';
+
+    if (op && prev) {
+      subEl.textContent = `${prev} ${op === '^' ? '^' : op}`;
+    } else {
+      subEl.textContent = '\u00a0';
+    }
+    
+    if (degRadBtn) {
+      degRadBtn.textContent = degMode ? 'DEG' : 'RAD';
+      degRadBtn.classList.toggle('active', !degMode);
+    }
+    modeIndicator.textContent = degMode ? 'DEG' : 'RAD';
+  }
+
+  // Select Themes
+  function changeTheme(themeName, e) {
+    if (e) {
+      playClick();
+      buttonRipple(e);
+    }
+    setThemeColors(themeName);
+    initParticles();
+    drawGraph();
+    localStorage.setItem('calci_theme', themeName);
+  }
+
+  function setThemeColors(themeName) {
+    calcContainer.setAttribute('data-theme', themeName);
+    document.querySelectorAll('.theme-dot').forEach(dot => dot.classList.remove('active'));
+    const activeDot = document.getElementById(`dot-${themeName}`);
+    if (activeDot) activeDot.classList.add('active');
+  }
+
+  // Audio Toggle
+  function toggleAudio(e) {
+    soundEnabled = !soundEnabled;
+    localStorage.setItem('calci_audio', soundEnabled);
+    updateAudioIcon();
+    if (soundEnabled) playClick();
+    if (e) buttonRipple(e);
+  }
+
+  function updateAudioIcon() {
+    audioIcon.innerHTML = soundEnabled ? audioOnSvg : audioMuteSvg;
+    audioToggleBtn.classList.toggle('active', !soundEnabled);
+  }
+
+  // Scientific Keyboard Toggle
+  function toggleScientific(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    const active = calcContainer.classList.toggle('scientific-active');
+    document.getElementById('scientific-toggle').classList.toggle('active', active);
+    modeIndicator.classList.toggle('show', active);
+    localStorage.setItem('calci_scientific', active);
+    
+    // redraw graph to adapt coordinates to layout transition
+    setTimeout(() => {
+      resizeGraphCanvas();
+      drawGraph();
+    }, 450);
+  }
+
+  // Graphing Mode Panel Toggle
+  function toggleGraphing(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    const active = calcContainer.classList.toggle('graphing-active');
+    document.getElementById('graphing-toggle').classList.toggle('active', active);
+    localStorage.setItem('calci_graphing', active);
+
+    setTimeout(() => {
+      resizeGraphCanvas();
+      resetGraphView();
+      drawGraph();
+    }, 450);
+  }
+
+  // sliding History Panel Toggle
+  function toggleHistory(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    calcContainer.classList.toggle('history-active');
+    document.getElementById('history-toggle-btn').classList.toggle('active', calcContainer.classList.contains('history-active'));
+  }
+
+  // DEG / RAD Trigonometric units
+  function toggleDegRad(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    degMode = !degMode;
+    render();
+  }
+
+  function toRadians(deg) { return deg * Math.PI / 180; }
+
+  // Scientific Memory Registers logic (MC, MR, M+, M-, MS)
+  function runMem(action, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    const val = parseFloat(cur);
+
+    if (action === 'MC') {
+      memoryVal = 0;
+      memIndicator.classList.remove('show');
+      localStorage.removeItem('calci_memory');
+    } else if (action === 'MR') {
+      cur = memoryVal.toString();
+      didCalc = true;
+      render();
+    } else if (action === 'M+') {
+      if (!isNaN(val)) {
+        memoryVal += val;
+        memIndicator.classList.add('show');
+        localStorage.setItem('calci_memory', memoryVal);
+      }
+    } else if (action === 'M-') {
+      if (!isNaN(val)) {
+        memoryVal -= val;
+        memIndicator.classList.add('show');
+        localStorage.setItem('calci_memory', memoryVal);
+      }
+    } else if (action === 'MS') {
+      if (!isNaN(val)) {
+        memoryVal = val;
+        memIndicator.classList.add('show');
+        localStorage.setItem('calci_memory', memoryVal);
+      }
+    }
+  }
+
+  // Digit Input handling
+  function inp(d, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') { clearAll(); }
+    if (didCalc) { cur = d; prev = ''; op = null; didCalc = false; }
+    else if (fresh) { cur = d; fresh = false; }
+    else { cur = cur === '0' ? d : (cur.length < 16 ? cur + d : cur); }
+    render();
+  }
+
+  function dot(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (fresh) { cur = '0.'; fresh = false; }
+    else if (!cur.includes('.')) cur += '.';
+    render();
+  }
+
+  // Operators Setting
+  function setOp(o, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') return;
+    if (op && !fresh) {
+      const res = compute();
+      if (res === null) return;
+      prev = res;
+      cur = res;
+    } else {
+      prev = cur;
+    }
+    op = o;
+    fresh = true;
+    didCalc = false;
+    clearOps();
+    const activeOpBtn = document.getElementById(opIds[o]);
+    if (activeOpBtn) activeOpBtn.classList.add('active');
+    render();
+  }
+
+  function clearOps() {
+    Object.values(opIds).forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.classList.remove('active');
+    });
+  }
+
+  // Unary Operations math logic (sin, cos, tan, ln, log, sqrt, sq, recip)
+  function runUnary(funcName, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') return;
+    const v = parseFloat(cur);
+    if (isNaN(v)) return;
+    let r = 0;
+    
+    switch (funcName) {
+      case 'sin': r = Math.sin(degMode ? toRadians(v) : v); break;
+      case 'cos': r = Math.cos(degMode ? toRadians(v) : v); break;
+      case 'tan': r = Math.tan(degMode ? toRadians(v) : v); break;
+      case 'ln': 
+        if (v <= 0) { cur = 'Error'; render(); return; }
+        r = Math.log(v); 
+        break;
+      case 'log': 
+        if (v <= 0) { cur = 'Error'; render(); return; }
+        r = Math.log10(v); 
+        break;
+      case 'sqrt': 
+        if (v < 0) { cur = 'Error'; render(); return; }
+        r = Math.sqrt(v); 
+        break;
+      case 'sq': r = v * v; break;
+      case 'recip': 
+        if (v === 0) { cur = 'Cannot divide by zero'; render(); return; }
+        r = 1 / v; 
+        break;
+    }
+    
+    cur = parseFloat(r.toFixed(10)).toString();
+    didCalc = true;
+    render();
+  }
+
+  // Constants
+  function runConst(name, e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (name === 'pi') cur = Math.PI.toString();
+    else if (name === 'e') cur = Math.E.toString();
+    fresh = false;
+    render();
+  }
+
+  // Compute Standard Binary calculations
+  function compute() {
+    const a = parseFloat(prev), b = parseFloat(cur);
+    if (isNaN(a) || isNaN(b)) return null;
+    let r = 0;
+    if (op === '+') r = a + b;
+    else if (op === '−') r = a - b;
+    else if (op === '×') r = a * b;
+    else if (op === '÷') {
+      if (b === 0) { 
+        cur = 'Cannot divide by zero'; 
+        op = null; prev = ''; fresh = false; 
+        render(); 
+        return null; 
+      }
+      r = a / b;
+    } else if (op === '^') {
+      r = Math.pow(a, b);
+    }
+    return parseFloat(r.toFixed(10)).toString();
+  }
+
+  // Equal Trigger logic
+  function calculate(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (!op || prev === '') return;
+    const fullExpr = `${prev} ${op} ${cur}`;
+    const res = compute();
+    if (res === null) { 
+      clearOps(); 
+      histEl.textContent = fullExpr + ' = Error'; 
+      return; 
+    }
+    
+    emitSuccessSparks();
+    histEl.textContent = fullExpr + ' =';
+    saveToHistory(fullExpr, res);
+
+    cur = res;
+    prev = '';
+    op = null;
+    fresh = false;
+    didCalc = true;
+    clearOps();
+    render();
+    subEl.textContent = '\u00a0';
+  }
+
+  // History slide drawer methods
+  function saveToHistory(expression, result) {
+    historyList.unshift({ expr: expression, res: result });
+    if (historyList.length > 50) historyList.pop();
+    localStorage.setItem('calci_history', JSON.stringify(historyList));
+    renderHistoryDrawer();
+  }
+
+  function renderHistoryDrawer() {
+    if (historyList.length === 0) {
+      historyListEl.innerHTML = `
+        <div class="history-empty">
+          <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+          No Calculations Yet
+        </div>
+      `;
+      return;
+    }
+
+    historyListEl.innerHTML = historyList.map((item, index) => `
+      <div class="history-item" onclick="recallHistory(${index}, event)">
+        <div class="history-item-expr">${item.expr}</div>
+        <div class="history-item-row">
+          <button class="history-copy-btn" onclick="copyHistoryResult(${index}, event)" title="Copy Result">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </button>
+          <div class="history-item-res">${item.res}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function recallHistory(index, e) {
+    if (e.target.closest('.history-copy-btn')) return;
+    playClick();
+    const item = historyList[index];
+    cur = item.res;
+    prev = '';
+    op = null;
+    didCalc = true;
+    clearOps();
+    render();
+    subEl.textContent = '\u00a0';
+    histEl.textContent = item.expr + ' =';
+    
+    // Close Drawer
+    calcContainer.classList.remove('history-active');
+    document.getElementById('history-toggle-btn').classList.remove('active');
+  }
+
+  function copyHistoryResult(index, e) {
+    playClick();
+    e.stopPropagation();
+    const item = historyList[index];
+    const copyBtn = e.currentTarget;
+    navigator.clipboard.writeText(item.res).then(() => {
+      const originalSvg = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<span style="font-size:10px; font-weight:700;">Copied</span>';
+      setTimeout(() => { copyBtn.innerHTML = originalSvg; }, 1000);
+    });
+  }
+
+  function clearHistory(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    historyList = [];
+    localStorage.removeItem('calci_history');
+    renderHistoryDrawer();
+  }
+
+  // Clear state (C / AC)
+  function clearAll(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    cur = '0'; prev = ''; op = null; fresh = false; didCalc = false;
+    clearOps();
+    histEl.textContent = '\u00a0';
+    subEl.textContent = '\u00a0';
+    render();
+  }
+
+  function backspace(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (didCalc || fresh || cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') return;
+    if (cur.length > 1) {
+      cur = cur.slice(0, -1);
+      if (cur === '-') cur = '0';
+    } else {
+      cur = '0';
+    }
+    render();
+  }
+
+  function toggleSign(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    if (cur === '0' || cur === 'Cannot divide by zero' || cur === 'Error' || cur === 'NaN') return;
+    cur = cur.startsWith('-') ? cur.slice(1) : '-' + cur;
+    render();
+  }
+
+  function percent(e) {
+    playClick();
+    if (e) buttonRipple(e);
+    const v = parseFloat(cur);
+    if (isNaN(v)) return;
+    cur = op && prev ? (parseFloat(prev) * v / 100).toString() : (v / 100).toString();
+    render();
+  }
+
+  // Physical Keyboard layout event mapping
+  document.addEventListener('keydown', e => {
+    let keyBtn = null;
+    if (e.key >= '0' && e.key <= '9') {
+      inp(e.key);
+      keyBtn = document.querySelector(`.btn[data-key="${e.key}"]`);
+    } else if (e.key === '.') {
+      dot();
+      keyBtn = document.querySelector('.btn[data-key="."]');
+    } else if (e.key === '+') {
+      setOp('+');
+      keyBtn = document.querySelector('.btn[data-key="+"]');
+    } else if (e.key === '-') {
+      setOp('−');
+      keyBtn = document.querySelector('.btn[data-key="-"]');
+    } else if (e.key === '*') {
+      setOp('×');
+      keyBtn = document.querySelector('.btn[data-key="*"]');
+    } else if (e.key === '/') {
+      e.preventDefault();
+      setOp('÷');
+      keyBtn = document.querySelector('.btn[data-key="/"]');
+    } else if (e.key === 'Enter' || e.key === '=') {
+      e.preventDefault();
+      calculate();
+      keyBtn = document.querySelector('.btn[data-key="="]');
+    } else if (e.key === 'Backspace') {
+      backspace();
+      keyBtn = document.querySelector('.btn[data-key="backspace"]');
+    } else if (e.key === 'Escape') {
+      clearAll();
+      keyBtn = document.querySelector('.btn[data-key="ac"]');
+    } else if (e.key === '%') {
+      percent();
+      keyBtn = document.querySelector('.btn[data-key="%"]');
+    }
+    
+    if (keyBtn) {
+      keyBtn.classList.add('btn-kbd-active');
+      setTimeout(() => keyBtn.classList.remove('btn-kbd-active'), 100);
+    }
+  });
+
+  // Run initializations
+  init();
+</script>
+</body>
+</html>
